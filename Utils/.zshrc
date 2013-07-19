@@ -1,3 +1,4 @@
+export PATH=./Scripts/:$PATH
 source ~/Rendu/Utils/.zsh/git-prompt/zshrc.sh
 alias l="ls -la"
 alias p="cd .."
@@ -13,6 +14,7 @@ alias gc="git commit -m "
 alias gp="git push"
 alias ga="git add"
 alias gl="git log --graph"
+alias sve="auto_git"
 
 # ------- Gcc shortcuts
 
