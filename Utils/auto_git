@@ -1,0 +1,12 @@
+#!/bin/sh
+git add .
+git add -u
+echo "Les mises a jout suivantes vont etre effectuées :\n"
+git status
+echo "Voulez vous continuer ? (O/n)"
+read conf
+if [ $conf -eq "n" ]; then
+	exit 1
+fi
+git commit -m "$1"
+git push $2
