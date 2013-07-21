@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_iterative_factorial.c                           :+:      :+:    :+:   */
+/*   ft_sqrt.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaubin <andre.aubin@lambdaweb.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/07/20 01:26:03 by aaubin            #+#    #+#             */
-/*   Updated: 2013/07/21 04:05:28 by aaubin           ###   ########.fr       */
+/*   Created: 2013/07/21 05:45:45 by aaubin            #+#    #+#             */
+/*   Updated: 2013/07/21 07:42:15 by aaubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_iterative_factorial(int nb)
+int	ft_sqrt(int nb)
 {
-	long long	ret;
+	int	num;
+	int	res;
 
-	ret = 1;
-	if ( nb < 0 )
-		ret = 0;
-	while ( nb > 0 )
+	res = 1;
+	num = 0;
+
+	while ( num < nb && nb <= 2147395600 )
 	{
-		ret = ret * nb;
-		nb = nb - 1;
+		res ++;
+		num = res * res;
 	}
-	if ( ret > 2147483647 )
-		ret = 0;
-	return (int) ret;
+	if ( num == nb )
+		return res;
+	else
+		return 0;
 }

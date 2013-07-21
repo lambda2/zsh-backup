@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_iterative_factorial.c                           :+:      :+:    :+:   */
+/*   ft_recursive_power.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaubin <andre.aubin@lambdaweb.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/07/20 01:26:03 by aaubin            #+#    #+#             */
-/*   Updated: 2013/07/21 04:05:28 by aaubin           ###   ########.fr       */
+/*   Created: 2013/07/20 01:54:47 by aaubin            #+#    #+#             */
+/*   Updated: 2013/07/21 05:17:10 by aaubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_iterative_factorial(int nb)
+int	ft_recursive_power(int nb, int power)
 {
-	long long	ret;
+	long long	buffer;
 
-	ret = 1;
-	if ( nb < 0 )
-		ret = 0;
-	while ( nb > 0 )
+	buffer = nb;
+	if ( buffer <= 0 )
+		return 0;
+
+	if ( power >= 1 )
 	{
-		ret = ret * nb;
-		nb = nb - 1;
+		buffer = buffer * ft_recursive_power(buffer, power - 1);
+		if ( buffer > 2147483646 )
+		{
+			power = 1;
+			buffer = 0;
+		}
 	}
-	if ( ret > 2147483647 )
-		ret = 0;
-	return (int) ret;
+	return buffer;
 }
