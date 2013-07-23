@@ -1,0 +1,10 @@
+#!/bin/sh
+
+echo "Recherche des espaces en fin de ligne..."
+grep -rin "^  " ex*
+echo "Recherche des espaces en debut de ligne..."
+grep -rin " $" ex*
+echo "Recherche des espaces entre le type de retour d'une fonction et sa définition..."
+grep -rEin "^([\s\t]*)+(int|void|char)+[\ ][^\t]*.*" ex*
+
+
