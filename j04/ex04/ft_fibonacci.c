@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_iterative_factorial.c                           :+:      :+:    :+:   */
+/*   ft_fibonacci.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaubin <andre.aubin@lambdaweb.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/07/19 10:04:41 by aaubin            #+#    #+#             */
-/*   Updated: 2013/07/22 21:48:51 by aaubin           ###   ########.fr       */
+/*   Created: 2013/07/20 02:51:51 by aaubin            #+#    #+#             */
+/*   Updated: 2013/07/22 22:01:48 by aaubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_iterative_factorial(int nb)
+int	ft_fibonacci(int index)
 {
-	long long	ret;
-	int			counter;
-	
-	counter	=	nb;
-	ret		=	nb;
-	if ( nb <= 0 || nb > 13 )
-		return 0;
-	while ( --counter > 1 )
-		ret = ret * counter;
-	return (int) ret;
+	if ( index < 0 || index > 46 )
+		return -1;
+	else if ( index == 0 || index == 1 )
+	{
+		return index;
+	}
+	else
+	{
+		return ft_fibonacci( index - 1 ) + ft_fibonacci( index - 2 );
+	}
 }

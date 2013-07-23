@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_iterative_factorial.c                           :+:      :+:    :+:   */
+/*   ft_iterative_power.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaubin <andre.aubin@lambdaweb.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/07/19 10:04:41 by aaubin            #+#    #+#             */
-/*   Updated: 2013/07/22 21:48:51 by aaubin           ###   ########.fr       */
+/*   Created: 2013/07/20 01:54:47 by aaubin            #+#    #+#             */
+/*   Updated: 2013/07/22 21:50:29 by aaubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_iterative_factorial(int nb)
+int	ft_iterative_power(int nb, int power)
 {
-	long long	ret;
-	int			counter;
+	unsigned long long	ret;
 	
-	counter	=	nb;
-	ret		=	nb;
-	if ( nb <= 0 || nb > 13 )
-		return 0;
-	while ( --counter > 1 )
-		ret = ret * counter;
+	ret = nb;
+	if ( nb < 0 )
+		ret = 0;
+	while ( power > 1 )
+	{
+		ret = ret * nb;
+		power = power - 1;
+	}
 	return (int) ret;
 }

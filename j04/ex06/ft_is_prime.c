@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_iterative_factorial.c                           :+:      :+:    :+:   */
+/*   ft_is_prime.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaubin <andre.aubin@lambdaweb.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/07/19 10:04:41 by aaubin            #+#    #+#             */
-/*   Updated: 2013/07/22 21:48:51 by aaubin           ###   ########.fr       */
+/*   Created: 2013/07/21 07:46:48 by aaubin            #+#    #+#             */
+/*   Updated: 2013/07/22 10:02:25 by aaubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_iterative_factorial(int nb)
+int	ft_is_prime(int nb)
 {
-	long long	ret;
-	int			counter;
-	
-	counter	=	nb;
-	ret		=	nb;
-	if ( nb <= 0 || nb > 13 )
+	int	is_prime;
+	int	counter;
+
+	if ( nb < 2 )
 		return 0;
-	while ( --counter > 1 )
-		ret = ret * counter;
-	return (int) ret;
+
+	is_prime = 1;
+	counter = 2;
+	while ( counter < nb && is_prime == 1)
+	{
+		if ( nb % counter == 0 )
+			is_prime = 0;
+		counter ++;
+	}
+
+	return is_prime;
 }
