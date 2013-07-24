@@ -19,3 +19,7 @@ alias sve="auto_git"
 # ------- Gcc shortcuts
 
 alias cm="gcc -Wall -Wextra -Werror -o bin "
+
+# ------- Check results
+
+alias ck="./Scripts/syncheck"

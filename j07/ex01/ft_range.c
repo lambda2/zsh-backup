@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_fibonacci.c                                     :+:      :+:    :+:   */
+/*   ft_range.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaubin <andre.aubin@lambdaweb.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/07/20 02:51:51 by aaubin            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2013/07/22 22:01:48 by aaubin           ###   ########.fr       */
-=======
-/*   Updated: 2013/07/21 05:37:31 by aaubin           ###   ########.fr       */
->>>>>>> 258e77eb4647b9156dcb0341ad636ec9dd539863
+/*   Created: 2013/07/24 16:09:21 by aaubin            #+#    #+#             */
+/*   Updated: 2013/07/24 17:23:15 by aaubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_fibonacci(int index)
+int	*ft_range(int min, int max)
 {
-	if ( index < 0 || index > 46 )
-		return -1;
-	else if ( index == 0 || index == 1 )
+	int	*range_array;
+	int	range;
+	int	counter;
+
+	range = max - min;
+	if ( range > 0 )
 	{
-		return index;
+		range_array = malloc( sizeof(int) * range );
+		while ( counter < range )
+		{
+			range_array[counter] = counter;
+			counter ++;
+		}
 	}
-	else
-	{
-		return ft_fibonacci( index - 1 ) + ft_fibonacci( index - 2 );
-	}
+	return range_array;
 }

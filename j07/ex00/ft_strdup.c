@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_fibonacci.c                                     :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaubin <andre.aubin@lambdaweb.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/07/20 02:51:51 by aaubin            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2013/07/22 22:01:48 by aaubin           ###   ########.fr       */
-=======
-/*   Updated: 2013/07/21 05:37:31 by aaubin           ###   ########.fr       */
->>>>>>> 258e77eb4647b9156dcb0341ad636ec9dd539863
+/*   Created: 2013/07/24 15:59:57 by aaubin            #+#    #+#             */
+/*   Updated: 2013/07/24 16:05:10 by aaubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_fibonacci(int index)
+char	*ft_strdup(char *src)
 {
-	if ( index < 0 || index > 46 )
-		return -1;
-	else if ( index == 0 || index == 1 )
+	int		size;
+	char	*to_fill;
+
+	size = 0;
+	while ( src[size] != '\0' )
+		size++;
+	to_fill = malloc(sizeof(char) * size + 1);
+	to_fill[size] = '\0';
+	while ( size >= 0 )
 	{
-		return index;
+		to_fill[size] = src[size];
+		size--;
 	}
-	else
-	{
-		return ft_fibonacci( index - 1 ) + ft_fibonacci( index - 2 );
-	}
+	return to_fill;
 }
