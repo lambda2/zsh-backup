@@ -6,9 +6,11 @@
 /*   By: aaubin <andre.aubin@lambdaweb.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/07/24 16:09:21 by aaubin            #+#    #+#             */
-/*   Updated: 2013/07/24 17:23:15 by aaubin           ###   ########.fr       */
+/*   Updated: 2013/07/25 21:46:31 by aaubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <stdlib.h>
 
 int	*ft_range(int min, int max)
 {
@@ -22,9 +24,9 @@ int	*ft_range(int min, int max)
 		range_array = malloc( sizeof(int) * range );
 		while ( counter < range )
 		{
-			range_array[counter] = counter;
-			counter ++;
+			range_array[counter] = min + counter;
+			counter++;
 		}
 	}
-	return range_array;
+	return (range_array);
 }

@@ -1,0 +1,79 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_resolve_sudoku.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aaubin <andre.aubin@lambdaweb.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2013/07/27 11:06:35 by aaubin            #+#    #+#             */
+/*   Updated: 2013/07/27 17:52:34 by aaubin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "ft_resolve_sudoku.h"
+
+/*
+** Initiate the sudoku resolution.
+** Just launch the ft_check_pos recursive process with the position 0.
+*/
+int	ft_resolve_sudoku(int **grid)
+{
+	puts("Starting...");
+	return (ft_check_pos(0, grid));
+}
+
+/*
+** Will try to recusrvively solve the grid,
+** by trying all possibles combinaisons.
+*/
+int	ft_check_pos (int pos, int **grid)
+{
+	int	line;
+	int	column;
+	
+	line = pos / 9;
+	column = pos % 9;
+	printf("\nSearching for item #%i ( [%i][%i] )",pos, line, column); 
+
+	if ( grid[line][column] != 0 )
+	{
+		return (ft_check_pos(pos + 1, grid ));
+	}
+	else if ( pos == 81 )
+	{
+		return (1);
+	}
+	else
+	{
+		return ( ft_validate_pos(pos, grid) );
+	}
+}
+
+/*
+** Will test the solution and assignate the value if
+** the solution pass.
+*/
+int	ft_validate_pos(int pos, int **grid)
+{
+	int	line;
+	int	column;
+	int	counter;
+	
+	line = pos / 9;
+	column = pos % 9;
+	counter = 1;
+	while ( counter < 9 )
+	{
+		if (  ft_test_sudoku(pos, grid, line, column) )
+		{
+			grid[line][column] = counter;
+			if ( ft_check_pos(pos + 1, grid) )
+			{
+				return (1);
+			}
+		}
+		counter++;
+	}
+	grid[line][counter] = 0;
+	return (0);
+}
