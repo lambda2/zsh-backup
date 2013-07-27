@@ -6,7 +6,7 @@
 /*   By: aaubin <andre.aubin@lambdaweb.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/07/27 11:06:35 by aaubin            #+#    #+#             */
-/*   Updated: 2013/07/27 20:19:27 by aaubin           ###   ########.fr       */
+/*   Updated: 2013/07/27 20:54:54 by aaubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	ft_fill_array(int count, char **argv, int **array)
 ** Will try to recusrvively solve the grid,
 ** by trying all possibles combinaisons.
 */
-int	ft_check_pos (int pos, int **grid)
+int	ft_check_pos(int pos, int **grid)
 {
 	int	line;
 	int	column;

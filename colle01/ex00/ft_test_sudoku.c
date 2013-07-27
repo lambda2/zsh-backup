@@ -6,7 +6,7 @@
 /*   By: aaubin <andre.aubin@lambdaweb.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/07/27 11:06:35 by aaubin            #+#    #+#             */
-/*   Updated: 2013/07/27 19:13:30 by aaubin           ###   ########.fr       */
+/*   Updated: 2013/07/27 20:55:23 by aaubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 ** column and his delimited 3x3 square.
 ** On this case, return 1 (True), 0 (False) otherwise.
 */
-int	ft_test_sudoku (int num, int **grid, int line, int column)
+int	ft_test_sudoku(int num, int **grid, int line, int column)
 {
-	if ( ft_is_not_on_line(num, grid, line) && 
+	if ( ft_is_not_on_line(num, grid, line) &&
 			ft_is_not_on_column(num, grid, column) &&
 			ft_is_not_on_square(num, grid, line, column) )
 	{
@@ -35,7 +35,7 @@ int	ft_test_sudoku (int num, int **grid, int line, int column)
 ** Returns True (1) if the given num is not on the given line.
 ** Otherwise, returns False (0).
 */
-int	ft_is_not_on_line (int num, int **grid, int line)
+int	ft_is_not_on_line(int num, int **grid, int line)
 {
 	int	counter;
 	int	is_not;
@@ -50,14 +50,14 @@ int	ft_is_not_on_line (int num, int **grid, int line)
 		}
 		counter++;
 	}
-	return is_not;
+	return (is_not);
 }
 
 /*
 ** Returns True (1) if the given num is not on the given column.
 ** Otherwise, returns False (0).
 */
-int	ft_is_not_on_column (int num, int **grid, int column)
+int	ft_is_not_on_column(int num, int **grid, int column)
 {
 	int	counter;
 	int	is_not;
@@ -72,7 +72,7 @@ int	ft_is_not_on_column (int num, int **grid, int column)
 		}
 		counter++;
 	}
-	return is_not;
+	return (is_not);
 }
 
 /*
@@ -80,7 +80,7 @@ int	ft_is_not_on_column (int num, int **grid, int column)
 ** the nearest square.
 ** If it's the case, returns 1, else returns 0;
 */
-int	ft_is_not_on_square (int num, int **grid, int line, int column)
+int	ft_is_not_on_square(int num, int **grid, int line, int column)
 {
 	int	line_counter;
 	int	line_limit;

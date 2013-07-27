@@ -6,7 +6,7 @@
 /*   By: aaubin <andre.aubin@lambdaweb.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/07/27 11:05:56 by aaubin            #+#    #+#             */
-/*   Updated: 2013/07/27 20:34:01 by aaubin           ###   ########.fr       */
+/*   Updated: 2013/07/27 20:39:29 by aaubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(int argc, char **argv)
 	}
 	if ( ft_fill_array(argc, argv, sudoku) && ft_resolve_sudoku(sudoku) )
 	{
-		ft_print_colored_sudoku(sudoku);
+		ft_print_sudoku(sudoku);
 	}
 	else
 	{

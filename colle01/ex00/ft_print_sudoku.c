@@ -6,7 +6,7 @@
 /*   By: aaubin <andre.aubin@lambdaweb.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/07/27 19:15:54 by aaubin            #+#    #+#             */
-/*   Updated: 2013/07/27 20:35:18 by aaubin           ###   ########.fr       */
+/*   Updated: 2013/07/27 21:05:59 by aaubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,10 @@ void	ft_print_sudoku(int **tab )
 		char_counter = 0;
 		while ( char_counter < 9 )
 		{
+			if ( char_counter > 0 )
+			{
+				ft_printstr(" ");
+			}
 			ft_print_colored_value(tab[counter][char_counter],0);
 			char_counter++;
 		}
@@ -42,7 +46,6 @@ void	ft_print_sudoku(int **tab )
 		counter++;
 	}
 }
-
 
 void	ft_print_colored_sudoku(int **tab )
 {
@@ -93,8 +96,6 @@ void	ft_print_colored_value(int value, int colored)
 	}
 	else
 	{
-		ft_printstr(" ");
 		ft_printstr(&c);
-		ft_printstr(" ");
 	}
 }
