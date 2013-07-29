@@ -1,0 +1,12 @@
+
+##################
+#                #
+#	Ressources   #
+#                #
+##################
+
+-  Recuperer la chaine / requete de l'utilisateur.
+-  Evaluer l'expression.
+   > Convertir l'expression en NPI
+   > Resoudre la NPI sans quitter le char.
+-  Resoudre l'expression.

@@ -1,38 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   match.c                                            :+:      :+:    :+:   */
+/*   calculette.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaubin <andre.aubin@lambdaweb.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/07/27 22:57:40 by aaubin            #+#    #+#             */
-/*   Updated: 2013/07/28 01:01:58 by aaubin           ###   ########.fr       */
+/*   Created: 2013/07/28 05:25:15 by aaubin            #+#    #+#             */
+/*   Updated: 2013/07/28 05:26:25 by aaubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	match(char *s1, char *s2)
+#include "calculette.h"
+
+void	calculette(int argc, char **argv)
 {
-	while (*s2)
-	{
-		if ( *s2== '*')
-		{
-			if ( match(s1, s2 + 1) )
-			{
-				return (1);
-			}
-			if ( *s1 && match(s1 + 1, s2) )
-			{
-				return (1);
-			}
-			return (0);
-		}
-		else
-		{
-			if ( *s1++ != *s2++ )
-			{
-				return (0);
-			}
-		}
-	}
-	return (*s1 == 0 && *s2 == 0);
+
 }

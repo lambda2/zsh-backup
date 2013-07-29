@@ -1,0 +1,292 @@
+===============================================================================
+	Reflexions bistromatiques
+===============================================================================
+
+--	1. Interpretation du sujet ------------------------------------------------
+
+- Faire des operations élémentaires sur de tres grands nombres.
+- Operations a effectuer : +, -, /, *, %
+- Peut importe la base, le calcul doit etre fait.
+- Le contexte est important, les erreurs doivent etre contextualisées.
+- Doit gerer les prioritées de calcul.
+- Nom : "bistro"
+- Doit contenir un Makefile (?)
+- Fonctions autorisées :
+	* write()
+	* malloc()
+	* free()
+- \n a la fin de l'affichage.
+
+--	2. Questions existentielles -----------------------------------------------
+
+- Comment calculer un nombre sensé etre potentiellement infini, en prenant en
+  compte le fait qu'un int est limité a 10 décimales ?
+- Comment effectuer des opérations élémentaires sur de telles proportions ?
+- Comment respecter les prioritées ?
+
+--	3. Pistes potentielles ----------------------------------------------------
+
+	3.1 > Calculer un nombre potentiellement infini
+
+	Si on part du principe que un int est limité, il faut changer d'angle
+	d'attaque. Peut on...
+
+	[] Chainer des structures d'entiers ?
+	[] Utiliser des chaines de caracteres / entiers ?
+	[] Utiliser de gros types ( long long, voire 'octaword' )
+	   ↳ Quand meme limité par la taille...
+	
+	3.2 > Effectuer des opérations élementaires
+
+	Il est clair qu'on ne pas proceder sur le nombre dans son intégralité. On
+	doit donc effectuer des opérations sur des segments ou meme des unités de
+	chaque nombre.
+	Il faut donc revenir au primaire et implémenter les opérations de la meme
+	facon que nous les faisions en CP.
+
+		3.2.1 > Addition
+		----------------
+
+		[ http://webperso.univ-st-etienne.fr/~ezequel/Numeration/numeration-HeVeA		 006.html ]
+		
+		Il existe certainement une foultitude d'algorithmes d'addition. Nous
+		allons en voir deux, l'algorithme classique tel qu'il est enseigné à
+		l'école élémentaire, et l'algorithme d'Avizienis, basé sur la
+		représentation des entiers dans les systèmes d'Avizienis.
+
+		Le problème résolu par chacun des deux algorithmes est le suivant :
+		obtenir la représentation en base b de la somme de deux entiers x et y,
+		en utilisant leurs représentations en base b (dont nous supposerons
+		qu'elles comportent chacune k+1 chiffres). Les opérations de bases, ou
+		élémentaires, c'est-à-dire celles que l'on suppose connues du processeur
+		qui exécutera l'algorithme, sont les suivantes :
+		- comparaisons entre entiers,
+		- addition de deux chiffres en base b, le résultat étant un entier écrit
+		en base b (les fameuses tables d'addition),
+		- soustraction de b.
+
+		✪ L'algorithme classique consiste à ajouter les chiffres de même poids,
+		des poids faibles vers les poids forts, en propageant éventuellement une
+		<< retenue >> vers le rang suivant lorsque la somme des deux chiffres
+		dépasse la base de la représentation.
+
+		✪ Le second algorithme ne sera pas vu pour le moment. On attend d'abord
+		que ca marche simplement avant d'optimiser le vaisseau.
+
+		3.2.2 > Multiplication
+		----------------------
+
+		[ http://fr.wikipedia.org/wiki/Algorithme_de_multiplication ]
+
+		L'apparition des ordinateurs a permis et exigé la mise au point
+		d'algorithmes plus rapides pour les grands nombres, avec un temps de
+		calcul qui peut descendre à O(n1+ε), où ε est un réel positif
+		arbitraire. La plupart des algorithmes ci-dessous ont été mis au point à
+		partir de 1960.
+
+		✪ Algorithme de Karatsuba
+		✪ Algorithme Toom-Cook ou "Toom3"
+		✪ Algorithme de Schönhage-Strassen (méthode utilisant la transformée de
+		Fourier rapide)
+		✪ Algorithme de Fürer
+
+			3.2.2.1 >> Détail : l'algorithme de Karatsuba
+			_______________________________________________|
+
+		|	Algorithme Karatsuba (U, V, R);
+		|	// calcule le polynôme R = U x V;
+		|	données
+		|		U, V, R : polynômes;
+		|		p, r : entiers;
+		|	variables
+		|		UG, UD, VG, VD, G, D, S, T, P, C: polynômes
+		|		q : entier;
+		|	début
+		|		si (deg(U) = 0) alors
+		|			R[0] = U[0] x V[0];
+		|		sinon
+		|			Separer(U, UG, UD);
+		|			Separer(V, VG, VD);
+		|			Add(UG, UD, S);
+		|			Add(VG, VD, T);
+		|			Karatsuba (UG, VG, G);
+		|			Karatsuba (UD, VD, D);
+		|			Karatsuba (S, T, P);
+		|			Sub(P, G, C);
+		|			Sub(C, D, C);
+		|			Recomposer(G, C, D, R);
+		|		fsi
+		|	fin
+			_____________________________________________
+
+		3.2.3 > Division et Modulo
+		--------------------------
+
+		Pour la division (et le modulo), on va revenir aux bases, et poser de
+		bonnes vieilles divisions a la mano...
+		On pourrait faire un vieux algorithme (un peu pourri) qui nous arrache
+		du temps de calcul a la petite cuillere ( je pense ) du genre :
+		
+		|	while  N ≥ D do
+		|		N := N - D
+		|	end
+		|	return N
+		
+		Mais on va plutot directement attaquer sur la division euclidienne, qui
+		est legerement lus complexe, mais qui drevrait nous permettre de gagner
+		un peu de temps...
+
+		|	function divide(N, D)
+		|		if D == 0 then throw DivisionByZeroException end
+		|		if D < 0 then (Q,R) := divide(N, -D); return (-Q, R) end
+		|		if N < 0 then (Q,R) := divide(-N, D); 
+		|	if R = 0 then return (-Q, 0)
+		|		else return (-Q - 1, D - R) end end
+		|		// At this point, N ≥ 0 and D
+		|		// > 0
+		|		Q := 0; R := N
+		|		while  R ≥ D do
+		|		Q := Q + 1
+		|		R := R - D
+		|		end
+		|	return (Q,
+		|			R)
+		|	end
+
+		Pour cet algo, on va avoir besoin d'utiliser des additions,
+		soustractions et des compaaisons, ce qui suggere que ces derniers soient
+		implémentés. Meme si la logique suggere que l'on commence par
+		implémenter l'addition et la soustraction, on y est maintenant
+		contraint.
+
+		☞ To see : Algorithme de Knuth
+
+
+	3.3 > Respecter les prioritées
+
+	C'est la que ca devient délicat... Il est clair que effectuer des operations
+	arithmétiques en suivant un ordre logiques de regles précises implique un
+	organisation hiérarchique de l'ensemble a étudier.
+	Deux solutions se dégagent alors :
+	
+		3.3.1 > Arbre binaires
+		----------------------
+
+		On a la une structure de données qui peut se représenter sous la forme
+		d'une hiérarchie dont chaque élément est appelé nœud, le nœud initial
+		étant appelé racine.
+		Dans un arbre binaire, chaque élément possède au plus deux éléments
+		fils au niveau inférieur, habituellement appelés gauche et droit. Du
+		point de vue de ces éléments fils, l'élément dont ils sont issus au
+		niveau supérieur est appelé père.
+
+				racine	---->	1			
+							  /   \
+							 2	   3		<= Exemple d'arbre binaire
+					       / |     | \
+					      4	 5	   6  7
+							 | \
+							 8   9
+
+		Mettre en oeuvre cette solution impliquerait de trier les prioritées
+		selon un arbre binaire comme celui ci, puis d'effectuer les operations
+		contenues dans l'arbre en remontant les niveaux.
+		Cette méthode m'a l'air bien couteuse, et un peu trop recomandée pour
+		sembler (réelement) efficace... On va chercher quelque chose d'un peu
+		plus compliqué ☺ ...
+
+		3.3.2 > Notation Polonaise Inverse ( NPI )
+		------------------------------------------
+
+		la notation polonaise inverse (NPI), également connue sous le nom de
+		notation post-fixée, permet de noter les formules arithmétiques sans
+		utiliser de parenthèses.
+
+		Utiliser cette notation présente un gros avantage, et un gros
+		inconvénient :
+		
+		[+] On a seulement une pile, et les prioritées se font dans l'ordre.
+			Ca sous entend qu'on a pas besoin de stocker le resultat de chaque
+			calcul, et on devrait donc gagner pas mal.
+		
+		[-] On rajoute une étape (qui peut s'averer lourde) de conversion entre
+			la notation infixe ( 1 + 2 * 4 ) et postfixe ( 1 2 4 * + ), surtout
+			sur de grosses chaines...
+
+	3.4 > Problemes annexes ( la liste qui va grandir... )
+
+		3.4.1 > Il va y en avoir des libs !
+		-----------------------------------
+
+		Franchement, si on n'a pas le droit d'utiliser des fonctions standard,
+		il va falloir utiliser celles qu'on a codé ces dernieres semaines.
+		Ca ne ose pas de probleme, mais ca implique beaucoup de fonctions vivant
+		dans un univers sombre, régi par une norme impitoyable aui n'autorise
+		que quatres habitants par foyer...
+		Ca veut dire que pour faire 20 fonctions bidons, il va falloir créer 5
+		fichiers du genre :
+		|- ft_lib_0.c
+		|- ft_lib_1.c
+		|- ft_lib_2.c
+		|- ft_lib_3.c
+		|- ft_lib_4.c
+
+		Ca va quand meme etre un peu lourd pour pas grand chose non ?
+			=> A demander au staff !
+
+--	4. Plan d'attaque	-------------------------------------------------------
+	
+	1.	[]	Conversion infix -> postfix
+			[]	<< Recupération d'un buffer d'entrée <<
+			[]	Interprétation
+			[]	>> Buffer de sortie >>
+
+	2.	[]	Implémentation d'une calculette à NPI
+			[]	Initialiser une pile vide
+			[]	Distinguer operandes et caracteres
+			[]	Stacker les chars, et le ressortir lorsque des operateurs
+				surgissent.
+			[]	<loop>
+			[]	Vider la pile des chars qui lui restent.
+
+	3.	[]	Implémentation des méthodes d'addition et de soustraction sur des char*
+			<>
+	4.	[]	Implémentation de la Multiplication
+			<>
+	5.	[]	Implémentation de la division
+			<>
+	6.	[]	Optimisation
+			<>
+
+--	5.	Ressources utiles	---------------------------------------------------
+
+	5.1 > Comprendre la NPI
+	-----------------------
+
+	★ http://en.wikipedia.org/wiki/Reverse_Polish_notation
+	
+	5.2 > Algo de conversion Infix & Postfix
+	----------------------------------------
+
+	★ http://www.go4expert.com/articles/infix-postfix-postfix-expression-t1693/
+
+	★ http://rosettacode.org/wiki/Parsing/RPN_calculator_algorithm#C
+
+	★ http://www.encyclopedie-enligne.com/n/no/notation_polonaise_inverse.html
+
+	5.3 > Algos mathématiques
+	-------------------------
+
+	★ http://www-fourier.ujf-grenoble.fr/~parisse/giac/doc/fr/algo.html#htoc13
+
+	★ https://en.wikipedia.org/wiki/Division_algorithm
+
+	★ http://fr.wikipedia.org/wiki/Arbre_binaire#Algorithmes_utilisant_des_arbres_binaires
+
+		5.3.1 > Grands nombres / RSA
+		----------------------------
+
+		★ http://www.di.ens.fr/~pointche/stages/projets/ensta03_2.pdf
+
+	★ http://recursivite.developpez.com/?page=page_8 // arbre binaire & infix
+
