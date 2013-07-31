@@ -6,9 +6,11 @@
 /*   By: aaubin <andre.aubin@lambdaweb.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/07/24 15:59:57 by aaubin            #+#    #+#             */
-/*   Updated: 2013/07/24 16:05:10 by aaubin           ###   ########.fr       */
+/*   Updated: 2013/07/25 17:29:34 by aaubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <stdlib.h>
 
 char	*ft_strdup(char *src)
 {
@@ -25,5 +27,5 @@ char	*ft_strdup(char *src)
 		to_fill[size] = src[size];
 		size--;
 	}
-	return to_fill;
+	return (to_fill);
 }
