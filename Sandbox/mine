@@ -1,0 +1,34 @@
+here !
+drxwrxwr-w   55 root   admin             1870 Nov 22 12:11 Applications
+drxwr-wr-w    9 root   wheel              306 Aug 14 01:39 Images
+drxwr-wr-w   69 root   wheel             2346 Nov 18 17:28 Library
+drxwr-wr-w    2 root   wheel               68 Aug 17 00:07 Network
+drxwr-wr-w    4 root   wheel              136 Apr 29 17:11 System
+drxwrxwr-w    6 root   admin              204 Apr 29 17:16 User Information
+drxwr-wr-w    8 root   admin              272 Nov 21 20:50 Users
+drxwrxwrxw    4 root   admin              136 Nov 29 13:17 Volumes
+drxwr-wr-w   39 root   wheel             1326 Jun 24 09:40 bin
+drxwr-wr-w    2 root   admin               68 Jul 12 14:17 cache
+dr-wr-wr-w    3 root   wheel             4408 Nov 24 10:17 dev
+drxwr-wr-w  110 root   wheel             3740 Nov 24 10:17 etc
+drxw------   13 exam   applications       442 Jul 26 17:09 exam
+drxwrxwrxw    4 root   admin              136 Sep 19 16:17 goinfre
+d---------    7 root   admin              238 Jul 25 03:09 goinfre_bak
+dr-wr-wr-w    2 root   wheel                1 Nov 24 10:17 home
+-rx-r--r--    1 bocal  admin                0 Jul 10 17:30 libpeerconnection.log
+-rx-r--r--    1 root   wheel          8244640 Sep 29 22:34 mach_kernel
+drxwr-wr-w    2 root   admin               68 Jul 15 01:28 mnt
+dr-wr-wr-w    2 root   wheel                1 Nov 24 10:17 net
+drxwr-wr-w    7 root   admin              238 Nov 29 13:14 nfs
+drxwr-wr-w    3 root   wheel              102 Jun 13 17:44 opt
+drxwr-wr-w    6 root   wheel              204 Apr 29 17:15 private
+drxwr-w---   29 root   wheel              986 Nov 7 17:49 root
+drxwr-wr-w    3 root   admin              102 Aug 19 04:00 save
+drxwr-wr-w   62 root   wheel             2108 Nov 18 17:28 sbin
+-rx-r--r--    1 root   admin          2237220 Jul 19 14:43 scripts.tgz
+drxwrxwrxw   74 root   wheel             2516 Nov 29 18:37 tmp
+-rx-r--r--    1 root   admin         27883900 Nov 18 15:46 update.pkg
+-rx-r--r--    1 root   admin          8382236 Nov 18 15:52 update.pkg.1
+-rx-r--r--    1 root   admin          8399294 Jul 15 08:31 update.tgz
+drxwr-wr-w   14 root   wheel              476 Jun 12 10:24 usr
+drxwr-wr-w   30 root   wheel             1020 Nov 18 18:17 var
