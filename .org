@@ -1,0 +1,24 @@
+total 232
+-rw-r--r--   1 aaubin  2013      0 Nov 30 17:08 -t
+drwxr-xr-x  23 aaubin  2013    782 Dec  4 02:15 .
+drwxr-xr-x  15 aaubin  2013    510 Dec  4 02:15 ..
+-rw-r--r--   1 aaubin  2013  19574 Nov 30 17:35 .a
+-rw-r--r--   1 aaubin  2013  19521 Nov 30 17:35 .b
+-rw-r--r--   1 aaubin  2013      0 Nov 30 14:37 .cache
+-rw-r--r--   1 aaubin  2013   1227 Dec  4 02:11 .mine
+-rw-r--r--   1 aaubin  2013   1280 Dec  4 02:11 .org
+-rw-r--r--   1 aaubin  2013      0 Nov 30 17:08 1203121422
+-rw-r--r--@  2 aaubin  2013    616 Nov 28 00:11 42.fdf.html
+-rw-r--r--@  2 aaubin  2013    616 Nov 28 00:11 43.fdf.html
+-rw-r--r--   1 aaubin  2013      0 Dec  4 01:09 december
+-rw-r--r--   1 aaubin  2013      0 Dec  4 01:13 december_2
+-rw-r--r--@  1 aaubin  2013     20 Nov 29 19:34 extend
+-rwxr-xr-x@  1 aaubin  2013  31972 Nov 27 10:49 fdf
+lrwxr-xr-x   1 aaubin  2013     16 Nov 30 11:22 ft_ls -> ../s1/ftls/ft_ls
+-rw-r--r--   1 aaubin  2013   2207 Nov 29 19:15 mine
+-rw-r--r--   1 aaubin  2013     20 Nov 29 19:34 noextend
+-rw-r--r--   1 aaubin  2013      0 Mar 12  2012 old
+-rw-r--r--   1 aaubin  2013   2291 Nov 29 19:15 org
+-rw-r--r--@  1 aaubin  2013     20 Nov 29 20:11 secure
+drwxr-xr-x   2 aaubin  2013     68 Nov 19 10:46 test
+-rwxr-xr-x   1 aaubin  2013    127 Dec  4 02:15 test_ls
