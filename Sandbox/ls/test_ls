@@ -1,0 +1,7 @@
+#!/bin/bash
+
+echo "./ft_ls $1 $2"
+./ft_ls $1 $2 > ../Tmp/.mine
+echo "ls $1 $2"
+ls $1 $2 > ../Tmp/.org
+vimdiff ../Tmp/.mine ../Tmp/.org
