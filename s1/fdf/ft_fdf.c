@@ -1,60 +1,70 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ls.c                                            :+:      :+:    :+:   */
+/*   ft_fdf.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaubin <aaubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/26 22:57:00 by aaubin            #+#    #+#             */
-/*   Updated: 2013/11/27 00:23:41 by aaubin           ###   ########.fr       */
+/*   Created: 2013/12/18 22:21:01 by aaubin            #+#    #+#             */
+/*   Updated: 2013/12/18 22:21:06 by aaubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_fdf.h"
 
-int	main(int argc, char *argv[])
+t_viewport	ft_vp_init(void)
 {
-	int	counter;
-	int	fd;
-	char buf[BUF_SIZE];
-	char new_buf;
-	size_t nbytes;
-	ssize_t bytes_read;
+	t_viewport	v = {
+		0.0,
+		0.0,
+		0.0,
+		0.0,
+		ft_create_4d_matrix ()
+	};
 
-	i = '\0';
-	if ( argc == 1 )
+	return (v);
+}
+
+void		ft_fdf_init(t_context *ct, char *file)
+{
+	ct->filename = file;
+	ct->width = WIN_W;
+	ct->height = WIN_H;
+	ct->win = NULL;
+	ct->mlx = mlx_init ();
+	ct->mesh = ft_parse_array (ct->filename);
+	ct->scene = ft_convert_int_array (ct->mesh);
+	ct->vp = ft_vp_init ();
+	if (ct->mlx != NULL)
 	{
-		ft_putstr ("usage : ");
-		ft_putstr (argv[0]);
-		ft_putstr (" file1\n");
+		ct->win = mlx_new_window (ct->mlx, ct->width, ct->height, "fdf");
+		mlx_expose_hook (ct->win, ft_fdf_expose_hook, ct);
+		mlx_key_hook (ct->win, ft_fdf_key_hook, ct);
+		mlx_loop (ct->mlx);
 	}
-	else
+}
+
+void		ft_exit(t_context *ct)
+{
+	ft_clear_array(&(ct->scene), (ct->mesh->w * ct->mesh->h));
+	free(ct->mesh->data);
+	free(ct->mesh);
+	exit(0);
+}
+
+int		ft_fdf_key_hook(int keycode, t_context *ct)
+{
+	if (ct)
 	{
-		counter = 0;
-		fd = open(argv[1], O_RDONLY, 0);
-		nbytes = sizeof(buf);
-		while ( bytes_read > 0 )
-		{
-			counter++;
-			bytes_read = read(fd, buf, nbytes);
-			if ( bytes_read == BUF_SIZE )
-			{
-				ft_putstr("On va avoir besoin d'augmenter la taille du buffer...");
-				new_buf = ft_memalloc (sizeof(char) * BUF_SIZE * counter);
-				if ( new_buf )
-				{
-
-				}
-				else
-					ft_putstr ("Erreur lors de la reallocation du buffer");
-			}
-		}
-
-	  while ( read(fd, &i, sizeof(int)) != EOF )
-	  {
-		printf("%c", i);
-	  }
-	  close(fd);
+		if (keycode == 65307)
+			ft_exit (ct);
 	}
+	return (0);
+}
+
+
+int		ft_fdf_expose_hook(t_context *ct)
+{
+	ft_print_data (ct);
 	return (0);
 }
