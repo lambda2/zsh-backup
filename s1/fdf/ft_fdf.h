@@ -15,15 +15,12 @@
 
 # include <mlx.h>
 # include <unistd.h>
-# include <math.h>
-# include <stdio.h> /* !!! */
 # include "get_next_line.h"
 
 # define		LINE_COLOR	0xffffff
 # define		WIN_H		1200
 # define		WIN_W		1900
-# define		INTERVAL		40
-# define		PI			3.14159265359
+# define		INTERVAL		30
 
 typedef struct		s_line
 {
@@ -57,20 +54,6 @@ typedef struct		s_3d_p
 	int				zz;
 }					t_3d_p;
 
-typedef struct		s_mat4
-{
-	float			v[4][4];
-}					t_mat4;
-
-typedef struct		s_viewport
-{
-	double			rot_angle;
-	float			rot_x;
-	float			rot_y;
-	float			rot_z;
-	t_mat4			matrix;
-}					t_viewport;
-
 typedef struct		s_context
 {
 	void				*mlx;
@@ -80,14 +63,12 @@ typedef struct		s_context
 	int				height;
 	t_3d_p			*scene;
 	t_mesh			*mesh;
-	t_viewport		vp;
 }					t_context;
 
 void		ft_fdf_init(t_context *ct, char *file);
 int		ft_fdf_key_hook(int keycode, t_context *ct);
 int		ft_fdf_exit(t_context *ct);
 int		ft_fdf_expose_hook(t_context *ct);
-void		ft_keyboard_event(int k, t_context *ct);
 
 int		ft_count_rows(char *name);
 int		ft_count_columns(char **elts);
@@ -112,21 +93,5 @@ char		**ft_fdf_strsplit(char const *s, char c);
 int		ft_abs(int a);
 t_line	ft_get_line_ctx(t_2d_p p0, t_2d_p p1);
 void		ft_draw_line(t_2d_p p0, t_2d_p p1, t_context *ct, int color);
-void		ft_draw_3d_line(t_3d_p p0, t_3d_p p1, t_context *ct, int color);
-t_line	ft_get_3d_line_ctx(t_3d_p p0, t_3d_p p1);
-
-t_mat4	ft_create_4d_matrix(void);
-t_mat4	ft_multiply_matrix(t_mat4 ma, t_mat4 mb);
-t_mat4	ft_add_matrix(t_mat4 ma, t_mat4 mb);
-void		ft_copy_matrix(t_mat4 *dest, t_mat4 src);
-void		ft_print_matrix(t_mat4 mat);
-t_3d_p	ft_apply_matrix(t_mat4 m, t_3d_p p);
-void		ft_apply_matrix_on_ctx(t_mat4 m, t_context *ct);
-
-t_mat4	ft_matrix_translate(float x, float y, float z);
-t_mat4	ft_matrix_scale(float x, float y, float z);
-t_mat4	ft_matrix_rotate_x(double angle);
-t_mat4	ft_matrix_rotate_y(double angle);
-t_mat4	ft_matrix_rotate_z(double angle);
 
 #endif /* !FT_FDF_H */

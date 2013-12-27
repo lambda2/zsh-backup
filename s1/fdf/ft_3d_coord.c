@@ -50,7 +50,10 @@ t_3d_p	*ft_convert_int_array(t_mesh *array)
 		x = 0;
 		while (x < (array->w))
 		{
-			ret[pos] = ft_create_3d_point (x, y, array->data[y][x]);
+			ret[pos] = ft_create_3d_point (
+					((WIN_W - (array->w * INTERVAL)) / 2) + x * INTERVAL,
+					((WIN_H - (array->h * INTERVAL)) / 2) + y * INTERVAL,
+					array->data[y][x]);
 			x++;
 			pos++;
 		}
@@ -70,12 +73,8 @@ void		ft_clear_array(t_3d_p **ret, int size)
 
 void		ft_3d_print(t_3d_p p, unsigned int color, t_context *ct)
 {
-	int	colori;
-
-	colori = 0x222222;
 	if (p.x > 0 && p.x < ct->width && p.y > 0 && p.y < ct->height)
 	{
-		colori += (0x111111 * p.z) / 10;
 		mlx_pixel_put(ct->mlx, ct->win, p.x, p.y, color);
 	}
 }

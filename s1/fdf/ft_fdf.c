@@ -12,19 +12,6 @@
 
 #include "ft_fdf.h"
 
-t_viewport	ft_vp_init(void)
-{
-	t_viewport	v = {
-		0.0,
-		0.0,
-		0.0,
-		0.0,
-		ft_create_4d_matrix ()
-	};
-
-	return (v);
-}
-
 void		ft_fdf_init(t_context *ct, char *file)
 {
 	ct->filename = file;
@@ -34,7 +21,6 @@ void		ft_fdf_init(t_context *ct, char *file)
 	ct->mlx = mlx_init ();
 	ct->mesh = ft_parse_array (ct->filename);
 	ct->scene = ft_convert_int_array (ct->mesh);
-	ct->vp = ft_vp_init ();
 	if (ct->mlx != NULL)
 	{
 		ct->win = mlx_new_window (ct->mlx, ct->width, ct->height, "fdf");

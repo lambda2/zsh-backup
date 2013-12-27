@@ -23,9 +23,6 @@ SRC=ft_fdf.c\
 	ft_fdf_parser.c\
 	ft_2d_coord.c\
 	ft_3d_coord.c\
-	ft_matrix.c\
-	ft_matrix_transforms.c\
-	ft_matrix_utils.c\
 	ft_math_utils.c\
 	ft_line.c\
 	get_next_line.c

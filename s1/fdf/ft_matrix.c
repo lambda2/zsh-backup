@@ -22,41 +22,61 @@ t_mat4	ft_create_4d_matrix(void)
 			{0.0, 0.0, 0.0, 1.0}
 		}
 	};
+	t_mat4	a = {
+		{
+			{1, 3, 2, 6},
+			{2, 1, 2, 0},
+			{5, 0, 1, 3},
+			{1, 2, 3, 2}
+		}
+	};
+	t_mat4	b = {
+		{
+			{2, 3, 2, 0},
+			{4, 1, 2, 3},
+			{3, 0, 1, 3},
+			{1, 3, 0, 2}
+		}
+	};
+	t_mat4	c;
+
+	c = ft_multiply_matrix (a, b);
+	ft_print_matrix (a);
+	ft_print_matrix (b);
+	ft_print_matrix (c);
+	return (m);
+}
+
+t_mat4	ft_get_translation_matrix(float x, float y, float z)
+{
+	t_mat4	m;
+
+	m = ft_create_4d_matrix ();
+	m.v[0][3] = x;
+	m.v[1][3] = y;
+	m.v[2][3] = z;
 	return (m);
 }
 
 t_mat4	ft_multiply_matrix(t_mat4 ma, t_mat4 mb)
 {
-	t_mat4	r;
-	int		i;
-	int		j;
-
-	for (i = 0; i < 4; ++i)
-		for (j = 0; j < 4; ++j)
-			r.v[i][j] = ma.v[i][0] * mb.v[0][j] +
-						ma.v[i][1] * mb.v[1][j] +
-						ma.v[i][2] * mb.v[2][j] +
-						ma.v[i][3] * mb.v[3][j];
-	return (r);
-}
-
-
-t_mat4	ft_add_matrix(t_mat4 ma, t_mat4 mb)
-{
 	t_mat4	mc;
-	int		i;
-	int		j;
+	int i;
+	int j;
+	int z;
 
-	i = 0;
-	while (i < 4)
+	/* aaah ! une boucle for !
+	mc = ft_create_4d_matrix ();*/
+	for (i = 0; i < 4; i++)
 	{
-		j = 0;
-		while (j < 4)
+		for (j = 0; j < 4; j++)
 		{
-			mc.v[i][j] = ma.v[i][j] + mb.v[i][j];
-			j++;
+			mc.v[i][j] = 0;
+			for (z = 0; z < 4; z++)
+			{
+				mc.v[i][j] += ma.v[i][z] * mb.v[z][j];
+			}
 		}
-		i++;
 	}
 	return (mc);
 }
@@ -79,7 +99,6 @@ void		ft_copy_matrix(t_mat4 *dest, t_mat4 src)
 	}
 }
 
-/* to delete ! */
 void		ft_print_matrix(t_mat4 mat)
 {
 	int	c;
