@@ -1,0 +1,109 @@
+
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+
+.axa_logo > img
+{
+	max-height: 50px;
+	width: auto;
+	padding-right: 30px; 
+	padding-left: 30px; 
+}
+
+.navbar-inverse .navbar-nav>li>a {
+	color: rgba(255, 255, 255, 0.71);
+}
+
+/* 
+	Gris "Axa"
+	#57636f 
+*/
+
+body
+{
+	font-family: 'Open Sans', sans-serif;
+	background: #E9E9E9;
+}
+
+.client
+{
+	color: #f59331;
+}
+
+#amount
+{
+	border:0;
+	margin:auto;
+	text-align:center;
+	display:block;
+	font-size: 3em;
+	color: #57636f;
+	font-weight:bold;
+}
+
+.form-group
+{
+	margin-top: 15px;
+}
+
+.matchbox-home {
+	background: #ffffff;
+	border-radius: 4px;
+/*	
+	-moz-box-shadow: 4px 4px 5px 0px #656565;
+	-webkit-box-shadow: 4px 4px 5px 0px #656565;
+	-o-box-shadow: 4px 4px 5px 0px #656565;
+	box-shadow: 4px 4px 5px 0px #656565;
+	filter: progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=134, Strength=5);
+*/
+}
+
+.radio-risques
+{
+	text-align: center;
+}
+
+
+.radio-risques > input[type="radio"]
+{
+	display: none;
+}
+
+input:checked
+{
+	display: block;
+	background: red;
+}
+
+.radio-risques label
+{
+	margin: 0px 10px;
+	width: 80px;
+	height: 30px;
+	background: #CCC;
+	border: 1px solid #CCC;
+	border-radius: 25px	
+}
+
+#risque-low:checked + label
+{
+	background: #6BA522;
+	border: 1px solid #6BA522;
+}
+
+#risque-med:checked + label
+{
+	background: #D3BB3D;
+	border: 1px solid #D3BB3D;
+}
+
+#risque-high:checked + label
+{
+	background: #D37F3D;
+	border: 1px solid #D37F3D;
+}
+
+#risque-vhigh:checked + label	
+{
+	background: #CA3405;
+	border: 1px solid #CA3405;
+}
